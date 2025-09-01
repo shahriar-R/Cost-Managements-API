@@ -1,8 +1,8 @@
 import uuid
 from datetime import datetime, timedelta, timezone
 from jose import jwt, JWTError
-from app.config import settings
-from app.schemas import TokenPayload
+from config import settings
+from schemas import TokenPayload
 
 
 class TokenService:
