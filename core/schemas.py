@@ -1,6 +1,23 @@
 from pydantic import BaseModel, Field, condecimal, constr
 
 
+class LoginInput(BaseModel):
+    username: str
+    password: str
+
+
+class MeOut(BaseModel):
+    username: str
+
+
+class TokenPayload(BaseModel):
+    sub: str
+    type: str
+    jti: str
+    tv: int
+    exp: int
+
+
 # input model
 class Expense(BaseModel):
 
