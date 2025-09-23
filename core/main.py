@@ -25,7 +25,7 @@ async def cost_not_found_exception_handler(
 @app.get("/costs/{cost_id}")
 async def get_cost(cost_id: int):
     if cost_id not in fake_db:
-        raise CostNotFoundException(cost_id)  # 🔹 اینجاست که خطا رو صدا می‌زنیم
+        raise CostNotFoundException(cost_id)  
     return fake_db[cost_id]
 
 
