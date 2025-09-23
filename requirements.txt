@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+python-jose[cryptography]
+passlib[bcrypt]
+pydantic
+asyncpg
+databases
+redis
+httpx
+pytest
+pytest-asyncio

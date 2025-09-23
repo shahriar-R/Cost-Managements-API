@@ -5,6 +5,7 @@ from fastapi.responses import JSONResponse
 from expenses.controllers import router as expenses_router
 from auth.controllers import router as auth_router
 from exceptions import CostNotFoundException
+from databases import database
 
 app = FastAPI()
 app.include_router(auth_router)
@@ -21,11 +22,18 @@ async def cost_not_found_exception_handler(
     )
 
 
-fake_db = {1: {"id": 1, "title": "ناهار", "amount": 120000}}
-
-
 @app.get("/costs/{cost_id}")
 async def get_cost(cost_id: int):
     if cost_id not in fake_db:
         raise CostNotFoundException(cost_id)  # 🔹 اینجاست که خطا رو صدا می‌زنیم
     return fake_db[cost_id]
+
+
+@app.on_event("startup")
+async def startup():
+    await database.connect()
+
+
+@app.on_event("shutdown")
+async def shutdown():
+    await database.disconnect()
