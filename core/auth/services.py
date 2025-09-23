@@ -1,8 +1,8 @@
 import uuid
 from fastapi import HTTPException, status, Response, Request
-from app.auth.repositories import UserRepository
-from app.auth.tokens import TokenService
-from app.config import settings
+from auth.repositories import UserRepository
+from auth.tokens import TokenService
+from config import settings
 from datetime import timedelta
 
 ACCESS_COOKIE = "access_token"
@@ -13,7 +13,7 @@ class AuthService:
     def __init__(self, user_repo: UserRepository, token_service: TokenService):
         self.user_repo = user_repo
         self.token_service = token_service
-        self.valid_refresh: dict[str, dict] = {}  # در عمل بهتره Redis باشه
+        self.valid_refresh: dict[str, dict] = {}
 
     def login(self, username: str, password: str, response: Response):
         user = self.user_repo.verify_user(username, password)
@@ -22,7 +22,6 @@ class AuthService:
                 status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials"
             )
 
-        # ساخت توکن‌ها
         access = self.token_service.create_token(
             subject=user.username,
             ttl=settings.ACCESS_TOKEN_EXPIRE,
@@ -63,10 +62,8 @@ class AuthService:
                 status_code=status.HTTP_401_UNAUTHORIZED, detail="Refresh revoked"
             )
 
-        # ابطال قبلی
         self.valid_refresh.pop(payload.jti, None)
 
-        # ساخت جدید
         new_access = self.token_service.create_token(
             subject=payload.sub,
             ttl=settings.ACCESS_TOKEN_EXPIRE,

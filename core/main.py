@@ -27,5 +27,5 @@ fake_db = {1: {"id": 1, "title": "ناهار", "amount": 120000}}
 @app.get("/costs/{cost_id}")
 async def get_cost(cost_id: int):
     if cost_id not in fake_db:
-        raise CostNotFoundException(cost_id)  # 🔹 اینجاست که خطا رو صدا می‌زنیم
+        raise CostNotFoundException(cost_id)  
     return fake_db[cost_id]
