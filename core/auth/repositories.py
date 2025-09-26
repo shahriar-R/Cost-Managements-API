@@ -1,13 +1,9 @@
 from typing import Dict, Optional
-from app.auth.models import User
-from app.auth.security import PasswordHasher
+from auth.models import User
+from auth.security import PasswordHasher
 
 
 class UserRepository:
-    """
-    فقط مسئول دسترسی به دیتابیس کاربران است.
-    در اینجا DB فیک داریم.
-    """
 
     def __init__(self, password_hasher: PasswordHasher):
         self.password_hasher = password_hasher
