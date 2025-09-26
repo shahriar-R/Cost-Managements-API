@@ -5,7 +5,7 @@ from fastapi.responses import JSONResponse
 from expenses.controllers import router as expenses_router
 from auth.controllers import router as auth_router
 from exceptions import CostNotFoundException
-from databases import database
+from core.db.database import database, Base, engine
 from auth.repositories import UserRepository
 from auth.security import PasswordHasher
 
@@ -34,6 +34,8 @@ async def get_cost(cost_id: int):
 @app.on_event("startup")
 async def startup():
     await database.connect()
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
     # create a test user if not exists
     password_hasher = PasswordHasher()
     user_repo = UserRepository(password_hasher)

@@ -2,7 +2,7 @@ import uuid
 from datetime import datetime, timedelta, timezone
 from jose import jwt, JWTError
 from config import settings
-from schemas import TokenPayload
+from core.db.schemas import TokenPayload
 
 
 class TokenService:

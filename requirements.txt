@@ -4,7 +4,7 @@ python-jose[cryptography]
 passlib[bcrypt]
 pydantic
 asyncpg
-databases
+sqlalchemy[asyncio]
 redis
 httpx
 pytest

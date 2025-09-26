@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Response, Request
-from core.schemas import LoginInput
+from core.db.schemas import LoginInput
 from core.auth.services import AuthService
 from core.auth.repositories import UserRepository
 from core.auth.security import PasswordHasher
