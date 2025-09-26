@@ -20,7 +20,7 @@ This project is a **FastAPI-based Expense Management System** that provides:
 - Load tests with Locust
 
 ---
-##🛠️ Multi-Stage Builds in Docker
+## 🛠️ Multi-Stage Builds in Docker
 
 **A multi-stage build means creating a Docker image in multiple steps (stages), where each stage has its own base image and purpose.**
 Why use Multi-Stage builds?
@@ -51,7 +51,7 @@ COPY ./app /app
 EXPOSE 8000
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 ```
-###🔹 How it works?
+### 🔹 How it works?
 - The builder stage installs all dependencies.
 - The production stage copies only the installed packages + source code.
 - The final image is much smaller and only includes what’s required to run the API.
@@ -60,12 +60,12 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 ```bash
   docker-compose up --build
 ```
-##🧪 Running Tests
-###Unit & Integration Tests
+## 🧪 Running Tests
+### Unit & Integration Tests
 ```bash
 pytest -v
 ```
-##Load Tests with Locust
+## Load Tests with Locust
 ```bash
 locust -f core/locustfile.py
 ```
