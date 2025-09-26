@@ -1,9 +1,11 @@
 from fastapi import APIRouter, Response, Request
-from schemas import LoginInput
-from auth.services import AuthService
-from auth.repositories import UserRepository
-from auth.security import PasswordHasher
-from auth.tokens import TokenService
+
+from core.db.schemas import LoginInput
+from core.auth.services import AuthService
+from core.auth.repositories import UserRepository
+from core.auth.security import PasswordHasher
+from core.auth.tokens import TokenService
+
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 

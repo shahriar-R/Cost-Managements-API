@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException, status
-from schemas import Expense, ExpenseOut
+from core.db.schemas import Expense, ExpenseOut
 from dependencies import get_current_user
 
 router = APIRouter(prefix="/expenses", tags=["expenses"])
 
-# دیتابیس موقت در حافظه
+
 expenses: dict[int, ExpenseOut] = {}
 next_id = 1
 
