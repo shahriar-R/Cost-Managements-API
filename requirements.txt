@@ -9,3 +9,4 @@ redis
 httpx
 pytest
 pytest-asyncio
+locust
